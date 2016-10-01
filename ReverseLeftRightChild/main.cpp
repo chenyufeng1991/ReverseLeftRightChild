@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -92,14 +93,15 @@ void PostOrderBiTree(BiTNode *T)
     }
 }
 
+// 交换左右子树
 void ReverseLeftRightChild(BiTNode **T)
 {
-    if (*T == NULL || ((*T)->lChild == NULL && (*T)->rChild == NULL))
+    if (*T == NULL)
     {
         return;
     }
 
-    swap((*T)->lChild, (*T)->rChild);
+    swap((*T)->lChild, (*T)->rChild); // 直接使用swap交换函数比较方便
     ReverseLeftRightChild(&((*T)->lChild));
     ReverseLeftRightChild(&((*T)->rChild));
 }
@@ -129,15 +131,3 @@ int main(int argc, const char * argv[])
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
