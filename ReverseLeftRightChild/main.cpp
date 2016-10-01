@@ -99,22 +99,9 @@ void ReverseLeftRightChild(BiTNode **T)
         return;
     }
 
-    if ((*T)->lChild != NULL && (*T)->rChild != NULL)
-    {
-        swap((*T)->lChild, (*T)->rChild);
-        ReverseLeftRightChild(&((*T)->lChild));
-        ReverseLeftRightChild(&((*T)->rChild));
-    }
-    else if ((*T)->lChild != NULL && (*T)->rChild == NULL)
-    {
-        swap((*T)->lChild, (*T)->rChild);
-        ReverseLeftRightChild(&((*T)->rChild));
-    }
-    else if ((*T)->lChild == NULL && (*T)->rChild != NULL)
-    {
-        swap((*T)->lChild, (*T)->rChild);
-        ReverseLeftRightChild(&((*T)->lChild));
-    }
+    swap((*T)->lChild, (*T)->rChild);
+    ReverseLeftRightChild(&((*T)->lChild));
+    ReverseLeftRightChild(&((*T)->rChild));
 }
 
 int main(int argc, const char * argv[])
