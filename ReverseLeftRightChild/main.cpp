@@ -77,6 +77,21 @@ void MiddleOrderBiTree(BiTNode *T)
     }
 }
 
+//后续遍历二叉树
+void PostOrderBiTree(BiTNode *T)
+{
+    if (T == NULL)
+    {
+        return;
+    }
+    else
+    {
+        PostOrderBiTree(T->lChild);
+        PostOrderBiTree(T->rChild);
+        cout << T->data << " ";
+    }
+}
+
 void ReverseLeftRightChild(BiTNode **T)
 {
     if (*T == NULL || ((*T)->lChild == NULL && (*T)->rChild == NULL))
@@ -91,16 +106,16 @@ void ReverseLeftRightChild(BiTNode **T)
         ReverseLeftRightChild(&((*T)->lChild));
         ReverseLeftRightChild(&((*T)->rChild));
     }
-
-    if ((*T)->lChild != NULL && (*T)->rChild == NULL)
+    else if ((*T)->lChild != NULL && (*T)->rChild == NULL)
     {
         (*T)->rChild  = (*T)->lChild;
+        (*T)->lChild = NULL;
         ReverseLeftRightChild(&((*T)->rChild));
     }
-
-    if ((*T)->lChild == NULL && (*T)->rChild != NULL)
+    else if ((*T)->lChild == NULL && (*T)->rChild != NULL)
     {
         (*T)->lChild  = (*T)->rChild;
+        (*T)->rChild = NULL;
         ReverseLeftRightChild(&((*T)->lChild));
     }
 }
@@ -120,8 +135,12 @@ int main(int argc, const char * argv[])
     PreOrderBiTree(T);
     cout << endl;
 
-    cout << "交换左右子树后,,中序遍历二叉树：";
+    cout << "交换左右子树后,中序遍历二叉树：";
     MiddleOrderBiTree(T);
+    cout << endl;
+
+    cout << "交换左右子树后，后续遍历二叉树：" ;
+    PostOrderBiTree(T);
     cout << endl;
 
     return 0;
