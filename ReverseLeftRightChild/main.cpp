@@ -96,12 +96,13 @@ void PostOrderBiTree(BiTNode *T)
 // 交换左右子树
 void ReverseLeftRightChild(BiTNode **T)
 {
+    // 如果是叶子节点，则递归结束
     if (*T == NULL)
     {
         return;
     }
 
-    swap((*T)->lChild, (*T)->rChild); // 直接使用swap交换函数比较方便
+    swap((*T)->lChild, (*T)->rChild); // 直接使用swap交换函数比较方便，直接交换指针；
     ReverseLeftRightChild(&((*T)->lChild));
     ReverseLeftRightChild(&((*T)->rChild));
 }
